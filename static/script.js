@@ -1,12 +1,52 @@
-function sendToBot() {
-    let inputBox = document.getElementById("msg-box");
-    let messageText = inputBox.value.trim();
-    let messageArea = document.getElementById("message-area");
+async function sendToBot() {
 
-    if (messageText === "") return;
+    const input = document.getElementById("msg-box");
+    const chatArea = document.getElementById("message-area");
 
-    let userDiv = document.createElement("div");
-    userDiv.textContent = "You: " + messageText;
-    messageArea.appendChild(userDiv);
-    inputBox.value = "";
+    const userMsg = input.value.trim();
+
+    if (!userMsg) return;
+
+    const userDiv = document.createElement("div");
+    userDiv.textContent = "You: " + userMsg;
+    chatArea.appendChild(userDiv);
+
+    input.value = "";
+
+    const typingDiv = document.createElement("div");
+    typingDiv.textContent = "Bot is typing...";
+    chatArea.appendChild(typingDiv);
+
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+    try {
+        const res = await fetch("/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            message: userMsg,
+            lang: "en"  
+        })
+
+    });
+
+    const data = await res.json();
+
+    typingDiv.remove();
+
+    const botDiv = document.createElement("div");
+    botDiv.textContent = "Bot: " + data.reply;
+    chatArea.appendChild(botDiv);
+
+    chatArea.scrollTop = chatArea.scrollHeight;
+
+  } catch (error) {
+    typingDiv.remove();
+
+    const errorDiv = document.createElement("div");
+    errorDiv.textContent = "⚠️ Bot failed to reply. Please try again.";
+    chatArea.appendChild(errorDiv);
+  }
 }
