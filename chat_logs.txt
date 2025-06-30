@@ -1,0 +1,4 @@
+User: i am frustated i dontt know why
+Emotion: neutral
+Bot: Alright, I'm here to help. What would you like to do next?
+----------------------------------------
