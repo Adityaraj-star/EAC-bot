@@ -11,8 +11,16 @@
         <div class="message-area" id="message-area"></div>
 
         <div class="input-part">
-        <input type="text" id="msg-box" placeholder="Type here...">
-        <button onclick="sendToBot()">Send</button> 
+            <label for="lang">🌐 Language:</label>
+            <select id="lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="mai">Maithili</option>
+            </select>
+
+            <input type="text" id="msg-box" placeholder="Type your message...">
+            <button onclick="sendToBot()">Send</button> 
+  
         </div>
     </div>
 

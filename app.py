@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from emotion_detector import get_emotion_reply
+from deep_translator import GoogleTranslator
 
 app = Flask(__name__)
 
@@ -11,19 +12,34 @@ def home():
 def chat_reply():
     data = request.get_json()
     user_msg = data.get('message')
+    lang = data.get('lang', 'en')
 
-    emotion, reply = get_emotion_reply(user_msg)
+    try:
+        translated_msg = GoogleTranslator(source=lang, target='en').translate(user_msg)
 
-    with open("chat_logs.txt", "a", encoding="utf-8") as file:
-        file.write(f"User: {user_msg}\n")
-        file.write(f"Emotion: {emotion}\n")
-        file.write(f"Bot: {reply}\n")
-        file.write("-" * 40 + "\n")
+        emotion, reply_en = get_emotion_reply(translated_msg)
 
-    return jsonify({
-        'reply': reply,
-        'emotion': emotion
-    })
+        final_reply = GoogleTranslator(source='en', target=lang).translate(reply_en)
+
+        with open("chat_logs.txt", "a", encoding="utf-8") as file:
+            file.write(f"User ({lang}): {user_msg}\n")
+            file.write(f"Translated: {translated_msg}\n")
+            file.write(f"Emotion: {emotion}\n")
+            file.write(f"Bot: {final_reply}\n")
+            file.write("-" * 40 + "\n")
+
+        return jsonify({
+            'reply': final_reply,
+            'emotion': emotion
+        })
+    
+
+    except Exception as e:
+        return jsonify({
+            'reply': "❌ Sorry, something went wrong with translation.",
+            'emotion': "neutral"
+        })
+    
     
 if __name__ == '__main__':
     app.run(debug=True)

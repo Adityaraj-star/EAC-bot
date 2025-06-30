@@ -10,6 +10,7 @@ async function sendToBot() {
 
     const input = document.getElementById("msg-box");
     const chatArea = document.getElementById("message-area");
+    const selectedLang = document.getElementById("lang").value;
 
     const userMsg = input.value.trim();
 
@@ -35,7 +36,7 @@ async function sendToBot() {
         },
         body: JSON.stringify({
             message: userMsg,
-            lang: "en"  
+            lang: selectedLang 
         })
 
     });
@@ -46,6 +47,7 @@ async function sendToBot() {
 
     const emotion = data.emotion;
     const emoji = emotionEmoji[emotion] || "";
+
     const botDiv = document.createElement("div");
     botDiv.textContent = `Bot: ${data.reply} ${emoji}`;
     botDiv.classList.add("bot", emotion);
@@ -58,7 +60,7 @@ async function sendToBot() {
     typingDiv.remove();
 
     const errorDiv = document.createElement("div");
-    errorDiv.textContent = "⚠️ Bot failed to reply. Please try again.";
+    errorDiv.textContent = "❌ Error: Could not get response from bot.";
     chatArea.appendChild(errorDiv);
   }
 }
