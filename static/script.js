@@ -6,6 +6,15 @@ const emotionEmoji = {
     neutral: "😐"
 };
 
+function typeText(targetElement, text, delay = 25) {
+    let i = 0;
+    const interval = setInterval(() => {
+        targetElement.textContent += text[i];
+        i++;
+        if (i >= text.length) clearInterval(interval);
+    }, delay);
+}
+
 async function sendToBot() {
 
     const input = document.getElementById("msg-box");
@@ -49,8 +58,9 @@ async function sendToBot() {
     const emoji = emotionEmoji[emotion] || "";
 
     const botDiv = document.createElement("div");
-    botDiv.textContent = `Bot: ${data.reply} ${emoji}`;
     botDiv.classList.add("bot", emotion);
+    botDiv.textContent = "Bot: ";
+    typeText(botDiv, `${data.reply} ${emoji}`);
     chatArea.appendChild(botDiv);
 
 

@@ -22,3 +22,8 @@ Translated: mujhe gussa aarha hai
 Emotion: neutral
 Bot: Thanks for sharing. Let me help you further.
 ----------------------------------------
+User (en): i am good
+Translated: i am good
+Emotion: happy
+Bot: Thanks for the kind words! How can I make your day even better?
+----------------------------------------
