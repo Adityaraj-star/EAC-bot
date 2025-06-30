@@ -2,3 +2,23 @@ User: i am frustated i dontt know why
 Emotion: neutral
 Bot: Alright, I'm here to help. What would you like to do next?
 ----------------------------------------
+User (en): i am good today
+Translated: i am good today
+Emotion: happy
+Bot: Thanks for the kind words! How can I make your day even better?
+----------------------------------------
+User (hi): mai thik hu
+Translated: Mai thik hu
+Emotion: neutral
+Bot: समझ गया। मैं आज आपकी सहायता कैसे कर सकता हूं?
+----------------------------------------
+User (mai): ham thik chii
+Translated: ham thikchii
+Emotion: neutral
+Bot: साझा करबाक लेल धन्यवाद। हम अहाँक आगू मदति करी।
+----------------------------------------
+User (en): mujhe gussa aarha hai
+Translated: mujhe gussa aarha hai
+Emotion: neutral
+Bot: Thanks for sharing. Let me help you further.
+----------------------------------------
