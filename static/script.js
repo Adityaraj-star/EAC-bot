@@ -1,3 +1,11 @@
+const emotionEmoji = {
+
+    happy: "😊",
+    sad: "😢",
+    angry: "😠",
+    neutral: "😐"
+};
+
 async function sendToBot() {
 
     const input = document.getElementById("msg-box");
@@ -36,9 +44,13 @@ async function sendToBot() {
 
     typingDiv.remove();
 
+    const emotion = data.emotion;
+    const emoji = emotionEmoji[emotion] || "";
     const botDiv = document.createElement("div");
-    botDiv.textContent = "Bot: " + data.reply;
+    botDiv.textContent = `Bot: ${data.reply} ${emoji}`;
+    botDiv.classList.add("bot", emotion);
     chatArea.appendChild(botDiv);
+
 
     chatArea.scrollTop = chatArea.scrollHeight;
 

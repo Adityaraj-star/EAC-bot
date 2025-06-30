@@ -81,3 +81,31 @@ button {
 button:hover {
     background: linear-gradient(to right, #4a68f0, #a770ef);
 }
+
+.bot {
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin-top: 5px;
+    max-width: 70%;
+}
+
+.bot.happy {
+    background-color: rgba(144, 238, 144, 0.15); 
+    border-left: 4px solid #45d845;
+}
+
+.bot.sad {
+    background-color: rgba(135, 206, 250, 0.15); 
+    border-left: 4px solid #3fa9f5;
+}
+
+.bot.angry {
+    background-color: rgba(255, 99, 71, 0.15); 
+    border-left: 4px solid #ff4a4a;
+}
+
+.bot.neutral {
+    background-color: rgba(200, 200, 200, 0.1); 
+    border-left: 4px solid #999;
+}
+
